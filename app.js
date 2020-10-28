@@ -48,4 +48,12 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/plants", plantRouter);
 app.use("/api/v1/payments", paymentRouter);
 
+// handle production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(`${__dirname}/public/`));
+  app.get(/.*/, (req, res) => {
+    res.sendFile(`${__dirname}/public/index.html`);
+  });
+}
+
 module.exports = app;
