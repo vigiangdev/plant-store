@@ -6,7 +6,7 @@ const mime = require("mime-types");
 const Plant = require("../models/Plant");
 
 const storage = multer.diskStorage({
-  destination: `public/uploads/`,
+  destination: `assets/uploads/`,
   filename: function (req, file, cb) {
     cb(
       null,
@@ -50,7 +50,7 @@ exports.getPlantImage = (req, res, next) => {
 
   const imagePath = path.join(
     __dirname,
-    "../public/uploads",
+    "../assets/uploads",
     req.params.image_name
   );
 
@@ -58,7 +58,7 @@ exports.getPlantImage = (req, res, next) => {
     res.sendFile(imagePath);
   } else {
     res.sendFile("image-coming-soon-placeholder.png", {
-      root: "public/uploads",
+      root: "assets/uploads",
     });
   }
 };
